@@ -1,7 +1,14 @@
 import express from "express";
+import dotenv from "dotenv";
+import conn from "./db.js";
+
+dotenv.config();
+
+//Connection to the DB
+conn();
 
 const app=express();
-const port=3000;
+const port=process.env.PORT;
 
 //static files middleware
 app.use(express.static('public'));
@@ -21,6 +28,7 @@ app.get('/about',(req,res)=>{
 app.get('/blog',(req,res)=>{
     res.render('blog');
 })
+
 
 app.listen(port,()=>{
     console.log(`Application running on port:${port}`);
