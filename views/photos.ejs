@@ -3,12 +3,12 @@
    <body class="main-layout inner_page">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+         <div class="loader"><img src="/images/loading.gif" alt="#"/></div>
       </div>
       <!-- end loader -->
      
          <!-- header -->
-        <%- include('partials/_menu.ejs')%>
+        <%- include('./partials/_menu.ejs')%>
          <!-- end header inner -->
       <!-- gallery -->
       <div class="gallery">
@@ -33,12 +33,12 @@
                               <img src="images/g1.jpg" alt="Bridge">
                               <div class="view_main">
                                 <div class="pose">
-                                <a class="read_more" href="images/g1.jpg"><img src="images/ga.png" alt="#"/></a>
+                                <a class="read_more" href="/photos/<%= photo._id%>"><img src="images/ga.png" alt="#"/></a>
                                 <h3 style="padding-top:10px; padding-bottom:10px">
                               <%= photo.name %></h3>
 
                               <p style="padding-top:10px;">
-                              <%= photo.description %></p>
+                              <%= photo.description.substring(0,80)+"..." %></p>
                               </div>
                               </div>
                            </div>
