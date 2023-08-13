@@ -12,4 +12,13 @@ const getBlogPage=(req,res)=>{
     res.render("blog");
 }
 
-export {getIndexPage,getAboutPage,getBlogPage};
+const getRegisterPage=(req,res)=>{
+    res.render('register' );
+
+}
+
+ const getLoginPage=(req,res)=>{
+        res.render('login');
+    }
+
+export {getIndexPage,getAboutPage,getBlogPage,getRegisterPage,getLoginPage};
