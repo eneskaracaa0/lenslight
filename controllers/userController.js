@@ -1,5 +1,6 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 
 const createUser=async (req,res)=>{
@@ -75,7 +76,15 @@ const loginUser=async (req,res)=>{
         }
 
         if(same){
-            res.status(200).send("You are loggend in");
+            const token=createToken(user._id);
+            res.cookie("jsonwebtoken",token,{
+                 httpOnly:true,
+            maxAge:1000*60*60*24,
+            }
+            );
+
+
+            res.redirect("/users/dashboard");
         }else{
             res.status(401).json({
                 succede:false,
@@ -94,4 +103,17 @@ const loginUser=async (req,res)=>{
     }
 }
 
-export { createUser,getUsers,getUser,loginUser};
+
+const createToken=(userId)=>{
+    return jwt.sign({userId},process.env.JWT_SECRET,{
+        expiresIn:'1d', //end time
+    });
+
+}
+
+
+const getDashboardPage=(req,res)=>{
+    res.render('dasboard');
+}
+
+export { createUser,getUsers,getUser,loginUser,getDashboardPage};

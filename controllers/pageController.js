@@ -1,4 +1,6 @@
 const getIndexPage=(req,res)=>{
+
+    console.log("Request User:",req.user);
     res.render("index");
 
 }
